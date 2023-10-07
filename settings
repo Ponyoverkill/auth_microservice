@@ -1,0 +1,1 @@
+main auth C:\Users\anton\PycharmProjects\fastapi_test_lib postgresql://postgres:admin@localhost:5432/test

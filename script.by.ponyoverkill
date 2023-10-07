@@ -1,0 +1,19 @@
+    # ### end Alembic commands ###
+
+    import sys
+    import os
+    print(sys.path)
+    print(os.getcwd())
+    with open(f'{os.getcwd()}/settings', 'r') as f:
+        module_name, obj_name, module_path, url = f.read().split()
+    sys.path.append(module_path)
+    module = __import__(module_name)
+    perms = getattr(module, obj_name).permissions
+    permissions = []
+    for p in perms:
+        permissions.append({'name': p})
+    permissions_db = getattr(module, obj_name).right_list
+    op.bulk_insert(
+        permissions_db,
+        permissions
+    )
